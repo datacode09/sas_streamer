@@ -31,7 +31,10 @@ import logging
 from typing import Generator, Iterable, Optional, List
 
 from smb.SMBConnection import SMBConnection
-from smb.smb_constants import SMB_FILE_READ_DATA
+try:
+    from smb.smb_constants import FILE_READ_DATA as SMB_FILE_READ_DATA
+except Exception:
+    SMB_FILE_READ_DATA = 0x00000001  # FILE_READ_DATA fallback
 from sas7bdat import SAS7BDAT
 import pandas as pd
 
